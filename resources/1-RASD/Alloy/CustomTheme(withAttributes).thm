@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<alloy>
+
+<view nodetheme="Martha">
+
+<defaultnode hideunconnected="yes"/>
+
+<defaultedge/>
+
+<node>
+   <type name="BatteryLevelDiscount"/>
+   <type name="CarStatusPenalty"/>
+   <type name="charging"/>
+   <type name="discount"/>
+   <type name="lowBattery"/>
+   <type name="Operator"/>
+   <type name="outOfOrder"/>
+   <type name="PlugDiscount"/>
+   <type name="reservable"/>
+   <type name="reserved"/>
+   <type name="SharingDiscount"/>
+   <type name="String"/>
+   <type name="surcharge"/>
+   <type name="SurchargeOrDiscount"/>
+   <type name="univ"/>
+   <type name="boolean/False"/>
+   <type name="boolean/True"/>
+   <type name="open$4/Ord"/>
+   <type name="seq/Int"/>
+</node>
+
+<node hideunconnected="no" color="Blue">
+   <type name="User"/>
+</node>
+
+<node shape="Box">
+   <type name="Guest"/>
+</node>
+
+<node shape="Box" color="Green">
+   <type name="CarLeftConditions"/>
+</node>
+
+<node shape="Diamond" color="Black">
+   <type name="Reservation"/>
+</node>
+
+<node shape="Ellipse" color="White">
+   <type name="AssistanceRequest"/>
+</node>
+
+<node shape="Hexagon" color="White">
+   <type name="ParkingArea"/>
+</node>
+
+<node shape="House">
+   <type name="SystemManager"/>
+</node>
+
+<node shape="Inv Triangle" color="Red">
+   <type name="Location"/>
+</node>
+
+<node shape="Lined Diamond" color="Gray">
+   <type name="Parkings"/>
+</node>
+
+<node shape="Lined Square" color="Gray">
+   <type name="Fleet"/>
+</node>
+
+<node shape="Parallelogram" color="White">
+   <type name="ExtraCharge"/>
+</node>
+
+<node shape="Trapezoid">
+   <type name="RegisteredUser"/>
+</node>
+
+<node style="Bold" shape="Inv Trapezoid" color="Yellow">
+   <type name="Ride"/>
+</node>
+
+<node visible="no">
+   <type name="CarState"/>
+   <type name="Int"/>
+   <type name="boolean/Bool"/>
+   <type name="ordering/Ord"/>
+</node>
+
+<node visible="no" color="Black">
+   <type name="Plate"/>
+</node>
+
+<node visible="no" shape="Parallelogram" color="Green">
+   <type name="DateAndTime"/>
+</node>
+
+<node visible="yes" shape="Ellipse" color="Yellow">
+   <type name="Car"/>
+</node>
+
+<edge attribute="yes">
+   <relation name="batteryLeft"> <type name="CarLeftConditions"/> <type name="Int"/> </relation>
+   <relation name="disabled"> <type name="RegisteredUser"/> <type name="boolean/Bool"/> </relation>
+   <relation name="paymentOk"> <type name="Ride"/> <type name="boolean/Bool"/> </relation>
+   <relation name="plate"> <type name="Car"/> <type name="Plate"/> </relation>
+   <relation name="plugged"> <type name="CarLeftConditions"/> <type name="boolean/Bool"/> </relation>
+   <relation name="timeEnd"> <type name="Ride"/> <type name="DateAndTime"/> </relation>
+   <relation name="timeStart"> <type name="Ride"/> <type name="DateAndTime"/> </relation>
+   <relation name="totalPrice"> <type name="Ride"/> <type name="Int"/> </relation>
+</edge>
+
+<edge color="Gray" visible="no" attribute="yes" constraint="no">
+   <relation name="plugged"> <type name="Car"/> <type name="boolean/Bool"/> </relation>
+</edge>
+
+<edge layout="no">
+   <relation name="cars"> <type name="Fleet"/> <type name="Car"/> </relation>
+</edge>
+
+<edge layout="yes" constraint="no">
+   <relation name="location"> <type name="AssistanceRequest"/> <type name="Location"/> </relation>
+   <relation name="sharedUsers"> <type name="Ride"/> <type name="RegisteredUser"/> </relation>
+   <relation name="user"> <type name="AssistanceRequest"/> <type name="RegisteredUser"/> </relation>
+</edge>
+
+<edge visible="no" attribute="yes">
+   <relation name="batteryLeft"> <type name="Car"/> <type name="Int"/> </relation>
+   <relation name="distantFromPlug"> <type name="CarLeftConditions"/> <type name="boolean/Bool"/> </relation>
+   <relation name="percentage"> <type name="ExtraCharge"/> <type name="Int"/> </relation>
+   <relation name="status"> <type name="Car"/> <type name="CarState"/> </relation>
+   <relation name="type"> <type name="ExtraCharge"/> <type name="SurchargeOrDiscount"/> </relation>
+</edge>
+
+<edge visible="no" constraint="no">
+   <relation name="$showExtras_r"> <type name="SharingDiscount"/> <type name="Ride"/> </relation>
+   <relation name="$showExtras_r&apos;"> <type name="PlugDiscount"/> <type name="Ride"/> </relation>
+   <relation name="$showExtras_r&apos;&apos;"> <type name="BatteryLevelDiscount"/> <type name="Ride"/> </relation>
+   <relation name="$showExtras_r&apos;&apos;&apos;"> <type name="CarStatusPenalty"/> <type name="Ride"/> </relation>
+   <relation name="$showExtras_rd"> <type name="CarLeftConditions"/> <type name="Ride"/> </relation>
+</edge>
+
+</view>
+
+</alloy>
