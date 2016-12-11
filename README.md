@@ -12,6 +12,7 @@ Releases are available inside the 'releases' folder.
 Currently available documents:
 
 1. Requirement Analysis and Specification Document / V 1.1
+2. Design Document / V 1.0
 
 Previous versions of release files are available inside 'releases/previous-versions'.  
 Outdated documents:
@@ -27,6 +28,8 @@ History
 * RASD V 1.0 released (12/11)
 * RASD updated to V 1.1 (13/11)
 * *RASD Submission Deadline, 13/11 @23.59*
+* DD V 1.0 released (11/12)
+* *DD Submission Deadline, 11/12 @23.59*
 
 Authors
 -------
