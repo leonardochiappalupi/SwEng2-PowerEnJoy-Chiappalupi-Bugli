@@ -13,7 +13,7 @@ Currently available documents:
 
 1. Requirement Analysis and Specification Document / V 1.1
 2. Design Document / V 1.2
-3. Integration Testing Plan Document / V 1.0
+3. Integration Test Plan Document / V 1.0
 
 Previous versions of release files are available inside 'releases/previous-versions'.  
 Outdated documents:
