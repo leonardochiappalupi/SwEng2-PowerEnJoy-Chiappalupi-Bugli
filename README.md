@@ -12,13 +12,15 @@ Releases are available inside the 'releases' folder.
 Currently available documents:
 
 1. Requirement Analysis and Specification Document / V 1.1
-2. Design Document / V 1.1
+2. Design Document / V 1.2
+3. Integration Testing Plan Document / V 1.0
 
 Previous versions of release files are available inside 'releases/previous-versions'.  
 Outdated documents:
 
 1. Requirement Analysis and Specification Document / V 1.0
 2. Design Document / V 1.0
+3. Design Document / V 1.1
 
 Sources
 -------
@@ -32,6 +34,9 @@ History
 * DD V 1.0 released (11/12)
 * DD updated to V 1.1 (11/12)
 * *DD Submission Deadline, 11/12 @23.59*
+* DD updated to V 1.2 (14/01)
+* ITPD V 1.0 released (14/01)
+* *ITPD Submission Deadline, 14/01 @23.59*
 
 Authors
 -------
