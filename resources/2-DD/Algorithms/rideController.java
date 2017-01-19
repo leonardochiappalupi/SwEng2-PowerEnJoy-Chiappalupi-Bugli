@@ -7,6 +7,7 @@ class RideController {
 
 
 	PaymentProcessor pProc;
+	CarDataService cdService;
 	Map<Ride, Timer> timers = new HashMap<Ride, Timer>(); // A timer for every ride
 	UsersManagement uMan;
 
@@ -18,10 +19,9 @@ class RideController {
 		Ride activeRide = new Ride(res.getCar(), res, actualSharedUsers); // Create Ride object
 		List<Ride> userRides = uMan.getCompleteUserData(user).getRides();
 		userRides.add(activeRide); // Adds the new ride as last of user' rides
-		CarDataService carInt = res.getCar().getCarDataService();
 		
-		if(carInt != null)
-			boolean unlocked = carInt.unlock(); // Unlocks the car
+		if(cdService != null)
+			boolean unlocked = cdService.unlock(res.getCar()); // Unlocks the car
 			if (unlocked)
 				return true;
 			else
@@ -34,7 +34,7 @@ class RideController {
 		for(RegisteredUser u : candidates) { // For every user candidate for sharing
 			Location actualLoc = uMan.positionShare(u.getUsername());
 			// If the distance to the car is lower than MAX_DISTANCE_FOR_SHARING
-			if(Location.distance(c.getLocation(), actualLoc) < MAX_DISTANCE_FOR_SHARING)
+			if(Location.distance(cdSevice.getPosition(c), actualLoc) < MAX_DISTANCE_FOR_SHARING)
 				finalSharingUsers.add(u); // Add them to the returned list
 		}
 		return finalSharingUsers;
@@ -62,7 +62,7 @@ class RideController {
 		@Override
 		public void run(){
 			ride.setTime(ride.getTime() + 1); //Updates the time count in the system
-			ride.getCar().getCarDataService().updateTime(ride.getTime()); //Sends updated count to the car
+			cdService.updateTime(ride.getCar(), ride.getTime()) //Sends updated count to the car
 		}
 	}
 
@@ -72,8 +72,9 @@ class RideController {
 			timers.remove(ride);
 		}
 	}
-
-	public boolean termRide (String user, Ride rd, ParkingArea pa, CarLeftConditions clc) { //Invocated by ClientReqDisp that must have already checked the termination conditions
+	
+    //Invocated by ClientReqDisp that must have already checked the termination conditions
+	public boolean termRide (String user, Ride rd, ParkingArea pa, CarLeftConditions clc) { 
 		RegisteredUser owner = uMan.getCompleteUserData(user);
 		lastUserRide = owner.getRides().get(owner.getRides().size - 1);
 		if (lastUserRide.equals(rd)) {
@@ -81,9 +82,10 @@ class RideController {
 			lastUserRide.setCarLeftConditions(clc);
 			computeTempPrice(lastUserRide); //Calculates price without extras
 			processExtras(lastUserRide, pa, clc); //Adds extras
-			bool paymentOk = pProc.executeTransaction(username, lastUserRide, lastUserRide.getTotalCost()); //Delegates payment to PaymentProcessor
+			//Delegates payment to PaymentProcessor
+			bool paymentOk = pProc.executeTransaction(username, lastUserRide, lastUserRide.getTotalCost()); 
 			lastUserRide.setPaymentOk(paymentOk);
-			boolean locked = lastUserRide.getCar().getCarDataService().lock(); // Lock the car
+			boolean locked = cdService.lock(lastUserRide.getCar()); // Lock the car
 			if(locked)
 				return true;
 			else return false;
