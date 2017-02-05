@@ -15,6 +15,7 @@ Currently available documents:
 2. Design Document / V 1.3
 3. Integration Test Plan Document / V 1.0
 4. Project Plan / V 1.0
+5. Code Inspection / V 1.0
 
 Previous versions of release files are available inside 'releases/previous-versions'.  
 Outdated documents:
@@ -42,6 +43,8 @@ History
 * DD updated to V 1.3 (19/01)
 * PP V 1.0 released (19/01)
 * *PP Submission Deadline, 22/01 @23.59*
+* CI V 1.0 released (05/02)
+* *CI Submission Deadline, 05/02 @23.59*
 
 Authors
 -------
